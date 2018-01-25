@@ -1,0 +1,65 @@
+{{define "listtemplate"}}
+
+<h1>Add Order</h1>
+
+<br>Order Number:<br>
+<input type="text" id="orderID" name="orderID" readonly>
+<br>Full Name:<br>
+<input type="text" id="orderClientName" name="orderClientName" value="" onchange="getdatetime()" required>
+<br>Date:<br>
+<input type="date" id="orderDate" name="orderDate" value="" readonly>
+<br>Time:<br>
+<input type="text" id="orderTime" name="orderTime" value="" readonly>
+<br> Status:<br>
+<input type="text" id="status" name="status" value="Not Placed">
+
+<br> Delivery, Pick-up or Eat-in:<br>
+<select name="EatMode" id="EatMode" value="Eatin">
+    <option value="Eatin">Eat-in</option>
+    <option value="Delivery">Delivery</option>
+    <option value="Takeaway">Take away</option>
+</select>
+<br>
+
+<h2>Select Dish, Click Add:</h2>
+<br>Dish:<br>
+<select name="pratoname" id="pratoname">
+        {{range .Pratos }}
+            <option value={{.Name}}>{{ .Name }}</option>
+        {{end}}
+        </select>
+<br>Qty:<br>
+<select name="pratoqtd" id="pratoqtd">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+        </select>
+<br><br>
+
+
+<button onclick="addNewItem() ">Add</button>
+<button onclick="removeSelectedRows() ">Remove Item</button>
+<button onclick="newOrder() ">New Order</button>
+
+<table id="myTable" class="table table-striped table-bordered">
+    <tr>
+        <th>Action</th>
+        <th>Dish</th>
+        <th>Qty</th>
+        <th>Price</th>
+    </tr>
+</table>
+<button onclick="saveOrder() ">Place Order</button>
+
+<p/>
+
+<br> Message:<br>
+<input type="text" id="message" name="message" value="">
+
+<p/> {{end}}
